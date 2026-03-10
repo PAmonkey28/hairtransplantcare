@@ -3,553 +3,718 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARTAS 植髮術後照護指南</title>
+  <title>ARTAS 植髮術後照護指南 — 楊氏羅丹醫療集團</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+TC:wght@300;400;600&display=swap');
+
     :root {
-      --primary: #2d6a4f;
-      --primary-light: #52b788;
-      --primary-dark: #1b4332;
-      --accent: #b7e4c7;
-      --bg: #f8fdf9;
-      --card-bg: #ffffff;
-      --text: #1a2e22;
-      --text-muted: #5a7566;
-      --border: #d8f3dc;
-      --warning: #e76f51;
-      --warning-light: #fff0eb;
-      --info: #457b9d;
-      --info-light: #eaf4fb;
-      --success: #40916c;
-      --success-light: #e9f5ee;
-      --shadow: 0 2px 12px rgba(45,106,79,0.10);
-      --radius: 14px;
+      --gold:        #c9a96e;
+      --gold-light:  #e8d5b0;
+      --gold-dark:   #8a6e3e;
+      --gold-shine:  #f0deb4;
+      --teal:        #5bb8c4;
+      --teal-light:  #d6f0f3;
+      --teal-dark:   #3a8f9b;
+      --white:       #ffffff;
+      --off-white:   #faf9f7;
+      --marble:      #f4f2ef;
+      --text:        #1c1917;
+      --text-mid:    #5c5449;
+      --text-light:  #9c9088;
+      --border:      #e8e2d8;
+      --shadow-gold: 0 4px 24px rgba(201,169,110,0.15);
+      --shadow-sm:   0 2px 12px rgba(0,0,0,0.06);
+      --radius:      12px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-      background: var(--bg);
+      font-family: 'Noto Serif TC', 'PingFang TC', 'Microsoft JhengHei', serif;
+      background: var(--marble);
       color: var(--text);
       min-height: 100vh;
     }
 
-    /* HEADER */
-    header {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-      color: white;
-      padding: 2rem 1.5rem 1.5rem;
-      text-align: center;
-    }
-    header h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: 0.03em; }
-    header p { margin-top: 0.4rem; font-size: 0.9rem; opacity: 0.85; }
-    .clinic-badge {
-      display: inline-block;
-      margin-top: 0.8rem;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 0.3rem 0.9rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
+    /* ── MARBLE TEXTURE via CSS ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: -1;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(201,169,110,0.04) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(91,184,196,0.05) 0%, transparent 50%),
+        linear-gradient(160deg, #faf9f7 0%, #f1ede8 50%, #faf9f7 100%);
     }
 
-    /* SEARCH */
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #0e1820 0%, #162535 60%, #1a2e3a 100%);
+    }
+
+    /* Operating-room photo strip */
+    .header-photo {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    .header-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      opacity: 0.55;
+      display: block;
+    }
+    .header-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(14,24,32,0.2) 0%,
+        rgba(14,24,32,0.5) 60%,
+        rgba(14,24,32,0.95) 100%);
+    }
+
+    /* Gold decorative lines */
+    .gold-rule {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0 2rem;
+    }
+    .gold-rule::before, .gold-rule::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .gold-rule span {
+      color: var(--gold); font-size: 0.65rem;
+      letter-spacing: 0.25em; text-transform: uppercase;
+    }
+
+    .header-brand {
+      padding: 1.4rem 1.5rem 1.8rem;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
+    }
+
+    .logo-wrap {
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+    }
+    .logo-mark {
+      width: 52px; height: 52px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle, rgba(201,169,110,0.12), transparent);
+      position: relative;
+    }
+    .logo-mark::before {
+      content: 'AR';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .brand-text { text-align: left; }
+    .brand-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 400;
+      color: var(--gold-light);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .brand-since {
+      font-size: 0.6rem; color: var(--gold);
+      letter-spacing: 0.3em; margin-top: 0.1rem;
+    }
+    .brand-zh {
+      font-size: 1.3rem; font-weight: 600;
+      color: white; margin-top: 0.15rem;
+      letter-spacing: 0.08em;
+    }
+
+    .header-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300;
+      color: white; letter-spacing: 0.06em;
+      margin-top: 0.3rem;
+    }
+    .header-subtitle {
+      font-size: 0.8rem; color: var(--gold-light);
+      letter-spacing: 0.12em; opacity: 0.9;
+    }
+
+    .rating-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 1rem;
+      border: 1px solid rgba(201,169,110,0.4);
+      border-radius: 30px;
+      background: rgba(201,169,110,0.08);
+      color: var(--gold-light);
+      font-size: 0.75rem; letter-spacing: 0.08em;
+    }
+    .rating-badge .stars { color: var(--gold); letter-spacing: -1px; }
+
+    /* ── SEARCH ── */
     .search-wrap {
-      background: var(--primary-dark);
-      padding: 0 1.5rem 1.2rem;
+      background: linear-gradient(to bottom, #1a2e3a, #0e1820);
+      padding: 0 1.5rem 1.4rem;
     }
     .search-box {
-      display: flex;
-      align-items: center;
-      background: white;
-      border-radius: 30px;
-      padding: 0.5rem 1rem;
-      gap: 0.5rem;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      display: flex; align-items: center;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(201,169,110,0.35);
+      border-radius: 40px;
+      padding: 0.55rem 1.2rem; gap: 0.6rem;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s;
     }
-    .search-box span { font-size: 1.1rem; color: var(--text-muted); }
+    .search-box:focus-within { border-color: var(--gold); }
+    .search-box .search-icon { font-size: 0.9rem; color: var(--gold); }
     .search-box input {
-      border: none;
-      outline: none;
-      width: 100%;
-      font-size: 0.95rem;
-      color: var(--text);
-      background: transparent;
+      flex: 1; border: none; background: transparent;
+      color: white; font-size: 0.9rem;
+      font-family: inherit; outline: none;
     }
-    .search-box input::placeholder { color: #aaa; }
+    .search-box input::placeholder { color: rgba(255,255,255,0.35); }
 
-    /* TIMELINE QUICK REF */
-    .timeline-bar {
-      background: white;
+    /* ── TIMELINE SCROLL BAR ── */
+    .tl-bar-outer {
+      background: var(--white);
       border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
     }
-    .timeline-inner {
-      display: flex;
-      padding: 0.8rem 1rem;
-      gap: 0.6rem;
-      min-width: max-content;
+    .tl-scroll-hint {
+      text-align: center; font-size: 0.65rem;
+      color: var(--text-light); letter-spacing: 0.1em;
+      padding: 0.35rem 0 0;
     }
-    .tl-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.25rem;
-      cursor: pointer;
-      padding: 0.5rem 0.8rem;
+    .tl-bar {
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .tl-bar::-webkit-scrollbar { display: none; }
+    .tl-inner {
+      display: flex; padding: 0.75rem 1rem;
+      gap: 0.6rem; min-width: max-content;
+    }
+    .tl-btn {
+      display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid var(--border);
       border-radius: 10px;
-      border: 1.5px solid var(--border);
-      background: var(--bg);
-      transition: all 0.2s;
-      min-width: 90px;
+      background: var(--off-white);
+      cursor: pointer; transition: all 0.25s;
+      min-width: 88px; user-select: none;
     }
-    .tl-item:hover, .tl-item.active {
-      background: var(--primary);
-      border-color: var(--primary);
-      color: white;
+    .tl-btn:hover { border-color: var(--gold); background: var(--white); }
+    .tl-btn.active {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-color: var(--gold); color: white;
     }
-    .tl-item .tl-icon { font-size: 1.3rem; }
-    .tl-item .tl-label { font-size: 0.7rem; font-weight: 600; text-align: center; line-height: 1.2; }
-    .tl-item .tl-time { font-size: 0.65rem; color: var(--text-muted); }
-    .tl-item:hover .tl-time, .tl-item.active .tl-time { color: rgba(255,255,255,0.8); }
+    .tl-btn .tl-ico { font-size: 1.2rem; }
+    .tl-btn .tl-lbl { font-size: 0.7rem; font-weight: 600; text-align: center; }
+    .tl-btn .tl-sub { font-size: 0.62rem; color: var(--text-light); }
+    .tl-btn.active .tl-sub { color: rgba(255,255,255,0.75); }
 
-    /* NAV TABS */
-    .tabs-wrap {
-      background: white;
-      border-bottom: 2px solid var(--border);
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    /* Timeline detail panels */
+    .tl-details-wrap {
+      max-width: 860px; margin: 0 auto; padding: 0 1rem;
     }
+    .tl-detail {
+      display: none;
+      background: var(--white);
+      border: 1.5px solid var(--gold-light);
+      border-radius: var(--radius);
+      padding: 1.3rem 1.4rem;
+      margin-bottom: 0.8rem;
+      box-shadow: var(--shadow-gold);
+    }
+    .tl-detail.active { display: block; animation: slideDown 0.25s ease; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .tl-detail h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--gold-dark);
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--gold-light);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    /* ── STICKY NAV TABS ── */
+    .tabs-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.07);
+    }
+    .tabs-wrap::-webkit-scrollbar { display: none; }
     .tabs {
-      display: flex;
-      padding: 0 1rem;
-      gap: 0;
-      min-width: max-content;
+      display: flex; padding: 0 0.75rem;
+      gap: 0; min-width: max-content;
     }
     .tab-btn {
-      padding: 0.8rem 1.1rem;
-      border: none;
-      background: transparent;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
+      padding: 0.75rem 1rem;
+      border: none; background: transparent;
+      font-family: inherit;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--text-light);
       cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: all 0.2s;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
+      border-bottom: 2px solid transparent;
+      letter-spacing: 0.03em;
+      transition: all 0.2s; white-space: nowrap;
+      display: flex; align-items: center; gap: 0.3rem;
     }
-    .tab-btn:hover { color: var(--primary); }
+    .tab-btn:hover { color: var(--gold-dark); }
     .tab-btn.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
+      color: var(--gold-dark);
+      border-bottom-color: var(--gold);
+      font-weight: 600;
     }
 
-    /* MAIN */
+    /* ── MAIN ── */
     main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 1.5rem 1rem 3rem;
+      max-width: 860px; margin: 0 auto;
+      padding: 1.5rem 1rem 3.5rem;
     }
-
-    /* SECTION PANELS */
     .panel { display: none; }
-    .panel.active { display: block; }
+    .panel.active { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* SEARCH RESULTS */
-    .search-results {
-      display: none;
-    }
+    /* Search results */
+    .search-results { display: none; }
     .search-results.active { display: block; }
-    .search-result-item {
-      background: white;
-      border-radius: var(--radius);
-      border: 1.5px solid var(--border);
-      padding: 1rem 1.2rem;
-      margin-bottom: 0.8rem;
-      cursor: pointer;
-      transition: box-shadow 0.2s;
+    .sr-item {
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 1rem 1.2rem;
+      margin-bottom: 0.7rem; cursor: pointer;
+      transition: all 0.2s; box-shadow: var(--shadow-sm);
     }
-    .search-result-item:hover { box-shadow: var(--shadow); }
-    .search-result-item .sr-category {
-      font-size: 0.7rem;
-      color: var(--primary);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.3rem;
+    .sr-item:hover { border-color: var(--gold); box-shadow: var(--shadow-gold); }
+    .sr-cat {
+      font-size: 0.65rem; color: var(--gold);
+      font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 0.25rem;
     }
-    .search-result-item .sr-title { font-weight: 600; font-size: 0.95rem; }
-    .search-result-item .sr-text { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
-    mark { background: #fff176; padding: 0 2px; border-radius: 3px; }
+    .sr-title { font-weight: 600; font-size: 0.92rem; }
+    .sr-text { font-size: 0.83rem; color: var(--text-mid); margin-top: 0.2rem; line-height: 1.5; }
+    mark { background: rgba(201,169,110,0.25); padding: 0 2px; border-radius: 3px; }
 
-    /* CARD STYLES */
+    /* ── SECTION TITLE ── */
     .section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin: 1.5rem 0 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      margin: 1.6rem 0 0.9rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--gold-dark); letter-spacing: 0.04em;
+    }
+    .section-title .st-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; color: white; flex-shrink: 0;
     }
     .section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-      margin-left: 0.5rem;
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, var(--gold-light), transparent);
     }
 
+    /* ── CARD ── */
     .card {
-      background: var(--card-bg);
+      background: var(--white);
       border-radius: var(--radius);
-      border: 1.5px solid var(--border);
-      padding: 1.1rem 1.2rem;
+      border: 1px solid var(--border);
+      padding: 1.1rem 1.3rem;
       margin-bottom: 0.8rem;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s;
     }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+
     .card-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.7rem;
     }
     .card-icon {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: var(--accent);
+      width: 38px; height: 38px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-shine));
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
+      font-size: 1rem; flex-shrink: 0;
+      border: 1px solid rgba(201,169,110,0.3);
     }
-    .card-title { font-weight: 700; font-size: 0.95rem; }
-    .card ul { padding-left: 1.2rem; }
+    .card-title {
+      font-weight: 600; font-size: 0.92rem; color: var(--text);
+    }
+    .card ul { padding-left: 1.1rem; }
     .card ul li {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-      line-height: 1.5;
+      font-size: 0.86rem; color: var(--text-mid);
+      margin-bottom: 0.4rem; line-height: 1.6;
     }
     .card ul li strong { color: var(--text); }
 
-    /* ALERT CARDS */
-    .card.warning {
-      background: var(--warning-light);
-      border-color: #f4a261;
+    /* Card variants */
+    .card.gold-card {
+      background: linear-gradient(135deg, #fffbf4, #fdf5e8);
+      border-color: var(--gold-light);
+      box-shadow: var(--shadow-gold);
     }
-    .card.warning .card-icon { background: #fde0d0; }
-    .card.info {
-      background: var(--info-light);
-      border-color: #a8dadc;
+    .card.teal-card {
+      background: linear-gradient(135deg, #f0f9fb, #e4f5f7);
+      border-color: rgba(91,184,196,0.3);
     }
-    .card.info .card-icon { background: #cce5f0; }
-    .card.success {
-      background: var(--success-light);
-      border-color: var(--primary-light);
+    .card.teal-card .card-icon {
+      background: linear-gradient(135deg, var(--teal-light), #b8e8ed);
+      border-color: rgba(91,184,196,0.3);
     }
-    .card.success .card-icon { background: var(--accent); }
+    .card.danger-card {
+      background: linear-gradient(135deg, #fff8f5, #fff0eb);
+      border-color: rgba(210,100,60,0.2);
+    }
+    .card.danger-card .card-icon {
+      background: linear-gradient(135deg, #fde8df, #fdd5c5);
+      border-color: rgba(210,100,60,0.2);
+    }
 
-    /* STEPS */
+    /* ── GRID ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* ── STEPS ── */
     .steps { counter-reset: step; }
     .step-item {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      align-items: flex-start;
+      display: flex; gap: 1rem; margin-bottom: 1.1rem; align-items: flex-start;
     }
     .step-num {
       counter-increment: step;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: white;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: white; font-weight: 700; font-size: 0.8rem;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 700;
-      font-size: 0.85rem;
-      flex-shrink: 0;
+      flex-shrink: 0; box-shadow: 0 2px 8px rgba(201,169,110,0.4);
     }
     .step-num::before { content: counter(step); }
-    .step-content { flex: 1; }
-    .step-content h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; }
-    .step-content p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+    .step-content h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .step-content p { font-size: 0.84rem; color: var(--text-mid); line-height: 1.6; }
 
-    /* GRID */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-    }
-    @media (max-width: 600px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
-
-    /* TIMELINE DETAIL */
-    .tl-detail {
-      display: none;
-      background: white;
-      border: 2px solid var(--primary-light);
-      border-radius: var(--radius);
-      padding: 1.2rem;
-      margin-bottom: 1rem;
-    }
-    .tl-detail.active { display: block; }
-    .tl-detail h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    /* CHECKLIST */
+    /* ── CHECKLIST ── */
     .checklist { list-style: none; padding: 0; }
     .checklist li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.88rem;
-      line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.86rem; line-height: 1.55; color: var(--text-mid);
     }
     .checklist li:last-child { border-bottom: none; }
-    .checklist li input[type="checkbox"] {
-      width: 16px; height: 16px;
-      margin-top: 2px;
-      accent-color: var(--primary);
-      flex-shrink: 0;
-      cursor: pointer;
+    .checklist input[type="checkbox"] {
+      width: 16px; height: 16px; margin-top: 2px;
+      accent-color: var(--gold-dark); flex-shrink: 0; cursor: pointer;
     }
-    .checklist li label { cursor: pointer; color: var(--text-muted); }
-    .checklist li input:checked + label {
-      color: var(--text-muted);
-      text-decoration: line-through;
-      opacity: 0.6;
+    .checklist label { cursor: pointer; }
+    .checklist input:checked + label {
+      text-decoration: line-through; opacity: 0.5;
     }
 
-    /* BADGE */
+    /* ── BADGE / TAG ── */
     .badge {
-      display: inline-block;
-      padding: 0.15rem 0.55rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 700;
+      display: inline-block; padding: 0.15rem 0.6rem;
+      border-radius: 20px; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.04em;
     }
-    .badge-red { background: #fde0d0; color: var(--warning); }
-    .badge-green { background: var(--accent); color: var(--primary-dark); }
-    .badge-blue { background: #cce5f0; color: var(--info); }
+    .badge-gold   { background: var(--gold-light); color: var(--gold-dark); }
+    .badge-teal   { background: var(--teal-light); color: var(--teal-dark); }
+    .badge-red    { background: #fde8df; color: #c0401a; }
 
-    /* TAGS */
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
     .tag {
-      padding: 0.2rem 0.7rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      background: var(--accent);
-      color: var(--primary-dark);
+      padding: 0.2rem 0.75rem; border-radius: 20px; font-size: 0.72rem;
+      font-weight: 600; background: var(--gold-light); color: var(--gold-dark);
+      border: 1px solid rgba(201,169,110,0.3);
     }
-    .tag.red { background: #fde0d0; color: var(--warning); }
+    .tag.teal { background: var(--teal-light); color: var(--teal-dark); border-color: rgba(91,184,196,0.3); }
+    .tag.red  { background: #fde8df; color: #c0401a; border-color: rgba(210,100,60,0.2); }
 
-    /* HOME QUICK REF GRID */
+    /* ── QUICK GRID (HOME) ── */
     .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.8rem;
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 0.8rem;
       margin-bottom: 1rem;
     }
-    @media (max-width: 480px) {
-      .quick-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 480px) { .quick-grid { grid-template-columns: 1fr; } }
+
     .quick-card {
-      background: white;
-      border-radius: var(--radius);
-      border: 1.5px solid var(--border);
-      padding: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      box-shadow: var(--shadow);
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 1rem 1.1rem; cursor: pointer;
+      transition: all 0.25s; display: flex; align-items: center; gap: 0.85rem;
+      box-shadow: var(--shadow-sm);
+      position: relative; overflow: hidden;
+    }
+    .quick-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+      border-radius: 3px 0 0 3px;
     }
     .quick-card:hover {
-      border-color: var(--primary-light);
-      box-shadow: 0 4px 16px rgba(45,106,79,0.15);
-      transform: translateY(-1px);
+      border-color: var(--gold-light);
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-2px);
     }
-    .quick-card .qc-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .quick-card .qc-text {}
+    .quick-card .qc-icon { font-size: 1.7rem; flex-shrink: 0; }
     .quick-card .qc-title { font-weight: 700; font-size: 0.9rem; }
-    .quick-card .qc-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.1rem; }
+    .quick-card .qc-sub { font-size: 0.73rem; color: var(--text-light); margin-top: 0.1rem; }
 
-    /* EMPTY SEARCH */
+    /* ── TIMELINE CARDS (HOME) ── */
+    .recovery-timeline {
+      position: relative; padding-left: 1.5rem;
+    }
+    .recovery-timeline::before {
+      content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px;
+      background: linear-gradient(to bottom, var(--gold), var(--gold-light), transparent);
+    }
+    .rt-item {
+      position: relative; margin-bottom: 0.9rem;
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--border); padding: 0.8rem 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .rt-item::before {
+      content: ''; position: absolute; left: -1.12rem; top: 50%;
+      transform: translateY(-50%);
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+    .rt-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
+    .rt-time {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      color: var(--gold-dark); background: var(--gold-light);
+      padding: 0.15rem 0.6rem; border-radius: 20px;
+    }
+    .rt-title { font-size: 0.88rem; font-weight: 600; }
+    .rt-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; }
+
+    /* ── EMPTY SEARCH ── */
     .empty-search {
-      text-align: center;
-      padding: 3rem 1rem;
-      color: var(--text-muted);
+      text-align: center; padding: 3rem 1rem; color: var(--text-light);
     }
-    .empty-search .es-icon { font-size: 3rem; margin-bottom: 0.8rem; }
-    .empty-search p { font-size: 0.9rem; }
+    .empty-search .es-icon { font-size: 2.5rem; margin-bottom: 0.8rem; opacity: 0.6; }
 
-    /* RESPONSIVE */
+    /* ── GOLD DIVIDER ── */
+    .gold-divider {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin: 0.2rem 0 0.8rem;
+    }
+    .gold-divider::before, .gold-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+    }
+    .gold-divider span { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.12em; }
+
+    /* ── IMPORTANT ALERT ── */
+    .alert-banner {
+      background: linear-gradient(135deg, #fff3e8, #ffecd5);
+      border: 1px solid rgba(201,130,60,0.3);
+      border-left: 4px solid #c97a30;
+      border-radius: var(--radius); padding: 1rem 1.2rem;
+      margin-bottom: 0.8rem; display: flex; gap: 0.8rem;
+    }
+    .alert-banner .ab-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .alert-banner .ab-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.3rem; color: #7a4010; }
+    .alert-banner ul { padding-left: 1rem; }
+    .alert-banner ul li { font-size: 0.84rem; color: #8a5020; margin-bottom: 0.3rem; line-height: 1.5; }
+
+    /* ── RESET BTN ── */
+    .btn-outline {
+      padding: 0.5rem 1.5rem;
+      border: 1.5px solid var(--gold);
+      background: transparent; color: var(--gold-dark);
+      border-radius: 30px; font-family: inherit;
+      font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .btn-outline:hover { background: var(--gold); color: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 1.5rem;
+      font-size: 0.75rem; color: var(--text-light);
+      letter-spacing: 0.05em;
+      border-top: 1px solid var(--border);
+    }
+    footer strong { color: var(--gold-dark); }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
-      header h1 { font-size: 1.3rem; }
+      .header-photo { height: 140px; }
+      .header-brand { padding: 1rem 1rem 1.4rem; }
+      .header-title { font-size: 1.3rem; }
       main { padding: 1rem 0.75rem 2.5rem; }
-      .tab-btn { padding: 0.7rem 0.8rem; font-size: 0.78rem; }
-    }
-
-    /* SCROLL INDICATOR for timeline */
-    .scroll-hint {
-      text-align: center;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      padding: 0.3rem 0;
-      background: white;
-      border-bottom: 1px solid var(--border);
     }
   </style>
 </head>
 <body>
 
+<!-- ═══ HEADER ═══ -->
 <header>
-  <h1>🌿 ARTAS 植髮術後照護指南</h1>
-  <p>楊氏羅丹診所 · ARTAS 植髮原廠認證教學機構</p>
-  <span class="clinic-badge">⭐ 4.9 / 5 (390 則評價)</span>
+  <div class="header-photo">
+    <img src="OR_photo.jpg" alt="楊氏羅丹診所手術室"
+         onerror="this.parentElement.style.background='linear-gradient(160deg,#0e1820,#1a2e3a)';this.style.display='none'">
+  </div>
+
+  <div class="header-brand">
+    <div class="logo-wrap">
+      <div class="logo-mark"></div>
+      <div class="brand-text">
+        <div class="brand-en">Asir &amp; Rodin Clinic</div>
+        <div class="brand-since">— SINCE 2000 —</div>
+        <div class="brand-zh">楊氏羅丹醫療集團</div>
+      </div>
+    </div>
+
+    <div class="gold-divider" style="width:100%;max-width:380px;">
+      <span>ARTAS HAIR TRANSPLANT AFTERCARE</span>
+    </div>
+
+    <div class="header-title">植髮術後照護指南</div>
+    <div class="header-subtitle">ARTAS ROBOTIC HAIR RESTORATION</div>
+
+    <div class="rating-badge">
+      <span class="stars">★★★★★</span>
+      <span>4.9 / 5 &nbsp;·&nbsp; 390 則評價</span>
+    </div>
+  </div>
 </header>
 
+<!-- ═══ SEARCH ═══ -->
 <div class="search-wrap">
   <div class="search-box">
-    <span>🔍</span>
-    <input type="text" id="searchInput" placeholder="搜尋關鍵字，例如：洗頭、飲食、腫脹…" autocomplete="off">
+    <span class="search-icon">✦</span>
+    <input type="text" id="searchInput"
+           placeholder="搜尋關鍵字，例如：洗頭、腫脹、飲食…" autocomplete="off">
   </div>
 </div>
 
-<div class="scroll-hint">← 左右滑動查看時間軸 →</div>
-<div class="timeline-bar">
-  <div class="timeline-inner">
-    <div class="tl-item" data-tl="tl-preop" onclick="showTimeline('tl-preop', this)">
-      <span class="tl-icon">📋</span>
-      <span class="tl-label">術前準備</span>
-      <span class="tl-time">手術前</span>
-    </div>
-    <div class="tl-item" data-tl="tl-36h" onclick="showTimeline('tl-36h', this)">
-      <span class="tl-icon">⏰</span>
-      <span class="tl-label">術後36小時</span>
-      <span class="tl-time">禁洗頭</span>
-    </div>
-    <div class="tl-item" data-tl="tl-3d" onclick="showTimeline('tl-3d', this)">
-      <span class="tl-icon">🛌</span>
-      <span class="tl-label">術後3天</span>
-      <span class="tl-time">睡姿注意</span>
-    </div>
-    <div class="tl-item" data-tl="tl-7d" onclick="showTimeline('tl-7d', this)">
-      <span class="tl-icon">🎩</span>
-      <span class="tl-label">術後7天</span>
-      <span class="tl-time">戴帽防護</span>
-    </div>
-    <div class="tl-item" data-tl="tl-14d" onclick="showTimeline('tl-14d', this)">
-      <span class="tl-icon">🚫</span>
-      <span class="tl-label">術後14天</span>
-      <span class="tl-time">飲食禁忌</span>
-    </div>
-    <div class="tl-item" data-tl="tl-1m" onclick="showTimeline('tl-1m', this)">
-      <span class="tl-icon">🏥</span>
-      <span class="tl-label">術後1個月</span>
-      <span class="tl-time">第一次回診</span>
-    </div>
-    <div class="tl-item" data-tl="tl-1y" onclick="showTimeline('tl-1y', this)">
-      <span class="tl-icon">📅</span>
-      <span class="tl-label">術後1年</span>
-      <span class="tl-time">定期追蹤</span>
+<!-- ═══ TIMELINE BAR ═══ -->
+<div class="tl-bar-outer">
+  <div class="tl-scroll-hint">← 點擊時間點查看重點 →</div>
+  <div class="tl-bar">
+    <div class="tl-inner">
+      <div class="tl-btn" onclick="showTimeline('tl-preop',this)">
+        <span class="tl-ico">📋</span>
+        <span class="tl-lbl">術前準備</span>
+        <span class="tl-sub">手術前</span>
+      </div>
+      <div class="tl-btn" onclick="showTimeline('tl-36h',this)">
+        <span class="tl-ico">⏱</span>
+        <span class="tl-lbl">術後 36hr</span>
+        <span class="tl-sub">禁止洗頭</span>
+      </div>
+      <div class="tl-btn" onclick="showTimeline('tl-3d',this)">
+        <span class="tl-ico">🛌</span>
+        <span class="tl-lbl">術後 3 天</span>
+        <span class="tl-sub">睡姿管理</span>
+      </div>
+      <div class="tl-btn" onclick="showTimeline('tl-7d',this)">
+        <span class="tl-ico">🎩</span>
+        <span class="tl-lbl">術後 7 天</span>
+        <span class="tl-sub">戴帽防護</span>
+      </div>
+      <div class="tl-btn" onclick="showTimeline('tl-14d',this)">
+        <span class="tl-ico">🚫</span>
+        <span class="tl-lbl">術後 14 天</span>
+        <span class="tl-sub">飲食禁忌</span>
+      </div>
+      <div class="tl-btn" onclick="showTimeline('tl-1m',this)">
+        <span class="tl-ico">🏥</span>
+        <span class="tl-lbl">術後 1 個月</span>
+        <span class="tl-sub">首次回診</span>
+      </div>
+      <div class="tl-btn" onclick="showTimeline('tl-1y',this)">
+        <span class="tl-ico">📅</span>
+        <span class="tl-lbl">術後 1 年</span>
+        <span class="tl-sub">定期追蹤</span>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Timeline Detail Cards -->
-<div style="max-width:860px;margin:0 auto;padding:0 1rem;">
+<!-- Timeline Detail Popdowns -->
+<div class="tl-details-wrap">
   <div class="tl-detail" id="tl-preop">
     <h3>📋 術前準備清單</h3>
     <ul class="checklist">
-      <li><input type="checkbox" id="c1"><label for="c1">手術前1日勿熬夜，保持充足睡眠</label></li>
-      <li><input type="checkbox" id="c2"><label for="c2">術前 48 小時禁止飲酒</label></li>
-      <li><input type="checkbox" id="c3"><label for="c3">手術當日避免含咖啡因飲品</label></li>
-      <li><input type="checkbox" id="c4"><label for="c4">當日早上洗頭，洗後不擦任何產品</label></li>
-      <li><input type="checkbox" id="c5"><label for="c5">適量吃早餐，勿空腹</label></li>
-      <li><input type="checkbox" id="c6"><label for="c6">告知醫護人員所有服用中的藥物</label></li>
-      <li><input type="checkbox" id="c7"><label for="c7">告知過敏史（藥物、麻醉劑、食物）</label></li>
-      <li><input type="checkbox" id="c8"><label for="c8">安排他人接送，勿自行開車</label></li>
-      <li><input type="checkbox" id="c9"><label for="c9">穿著寬鬆排釦衣物（非套頭式）</label></li>
+      <li><input type="checkbox" id="t1"><label for="t1">手術前 1 日勿熬夜，保持充足睡眠</label></li>
+      <li><input type="checkbox" id="t2"><label for="t2">術前 48 小時禁止飲酒</label></li>
+      <li><input type="checkbox" id="t3"><label for="t3">手術當日避免含咖啡因飲品</label></li>
+      <li><input type="checkbox" id="t4"><label for="t4">當日早上洗頭，洗後不擦任何護髮產品</label></li>
+      <li><input type="checkbox" id="t5"><label for="t5">適量吃早餐，勿空腹</label></li>
+      <li><input type="checkbox" id="t6"><label for="t6">告知醫護所有服用藥物及過敏史</label></li>
+      <li><input type="checkbox" id="t7"><label for="t7">安排他人接送，勿自行駕車</label></li>
+      <li><input type="checkbox" id="t8"><label for="t8">穿著寬鬆排釦上衣（非套頭式）</label></li>
     </ul>
   </div>
   <div class="tl-detail" id="tl-36h">
-    <h3>⏰ 術後 36 小時</h3>
-    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.6rem;">36 小時內禁止洗頭及接觸水，之後才可開始洗髮。</p>
+    <h3>⏱ 術後 36 小時重點</h3>
     <ul class="checklist">
-      <li><input type="checkbox" id="d1"><label for="d1">傷口少量滲血屬正常，以紗布直接加壓 3 分鐘</label></li>
-      <li><input type="checkbox" id="d2"><label for="d2">前額及太陽穴可冰敷（每次 20 分鐘，間隔 20 分鐘）</label></li>
-      <li><input type="checkbox" id="d3"><label for="d3">保持頭部平躺，避免碰觸種植部位</label></li>
+      <li><input type="checkbox" id="t9"><label for="t9">禁止洗頭及接觸水，保持術區乾燥</label></li>
+      <li><input type="checkbox" id="t10"><label for="t10">少量滲血屬正常，紗布直接加壓 3 分鐘</label></li>
+      <li><input type="checkbox" id="t11"><label for="t11">前額與太陽穴交替冰敷（20分鐘 on/off）</label></li>
+      <li><input type="checkbox" id="t12"><label for="t12">保持頭部平躺，避免碰觸種植部位</label></li>
     </ul>
   </div>
   <div class="tl-detail" id="tl-3d">
-    <h3>🛌 術後 3 天 — 睡姿注意</h3>
+    <h3>🛌 術後 3 天 — 睡眠姿勢</h3>
     <ul class="checklist">
-      <li><input type="checkbox" id="e1"><label for="e1">維持平躺姿勢入眠</label></li>
-      <li><input type="checkbox" id="e2"><label for="e2">有水腫時，下巴稍微上仰，抬高頭部促進消腫</label></li>
-      <li><input type="checkbox" id="e3"><label for="e3">枕頭上鋪深色毛巾，防止滲液污染</label></li>
+      <li><input type="checkbox" id="t13"><label for="t13">維持平躺姿勢入眠</label></li>
+      <li><input type="checkbox" id="t14"><label for="t14">水腫時，下巴稍微上仰，抬高頭部</label></li>
+      <li><input type="checkbox" id="t15"><label for="t15">枕頭鋪深色毛巾，防止滲液污染</label></li>
     </ul>
   </div>
   <div class="tl-detail" id="tl-7d">
     <h3>🎩 術後 7 天 — 外出防護</h3>
     <ul class="checklist">
-      <li><input type="checkbox" id="f1"><label for="f1">外出時戴通風性高的帽子，防止感染</label></li>
-      <li><input type="checkbox" id="f2"><label for="f2">術後 7 天內禁用一般洗髮精</label></li>
-      <li><input type="checkbox" id="f3"><label for="f3">假髮需經醫師評估後才可使用</label></li>
+      <li><input type="checkbox" id="t16"><label for="t16">外出戴通風性高的帽子，防止感染</label></li>
+      <li><input type="checkbox" id="t17"><label for="t17">術後 7 天禁用一般洗髮精</label></li>
+      <li><input type="checkbox" id="t18"><label for="t18">假髮需醫師評估後才可使用</label></li>
     </ul>
   </div>
   <div class="tl-detail" id="tl-14d">
     <h3>🚫 術後 14 天 — 飲食禁忌</h3>
     <ul class="checklist">
-      <li><input type="checkbox" id="g1"><label for="g1">避免辛辣、刺激性食物</label></li>
-      <li><input type="checkbox" id="g2"><label for="g2">禁用不明中藥</label></li>
-      <li><input type="checkbox" id="g3"><label for="g3">禁止服用阿斯匹靈（除非醫師指示）</label></li>
-      <li><input type="checkbox" id="g4"><label for="g4">禁止抽菸</label></li>
-      <li><input type="checkbox" id="g5"><label for="g5">禁止飲酒</label></li>
+      <li><input type="checkbox" id="t19"><label for="t19">避免辛辣、刺激性食物</label></li>
+      <li><input type="checkbox" id="t20"><label for="t20">禁用不明中藥材</label></li>
+      <li><input type="checkbox" id="t21"><label for="t21">禁止服用阿斯匹靈（除非醫師指示）</label></li>
+      <li><input type="checkbox" id="t22"><label for="t22">禁止抽菸</label></li>
+      <li><input type="checkbox" id="t23"><label for="t23">禁止飲酒</label></li>
     </ul>
   </div>
   <div class="tl-detail" id="tl-1m">
     <h3>🏥 術後 1 個月 — 首次回診</h3>
-    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:0.6rem;">植髮後一個月內，視狀況安排第一次回診。回診後，醫師評估通過可恢復正常力道洗頭。</p>
     <ul class="checklist">
-      <li><input type="checkbox" id="h1"><label for="h1">安排術後一個月內回診</label></li>
-      <li><input type="checkbox" id="h2"><label for="h2">回診時詢問洗頭與生活注意事項</label></li>
+      <li><input type="checkbox" id="t24"><label for="t24">安排術後 1 個月內第一次回診</label></li>
+      <li><input type="checkbox" id="t25"><label for="t25">回診後醫師評估，可恢復正常力道洗頭</label></li>
+      <li><input type="checkbox" id="t26"><label for="t26">詢問後續用藥及生活注意事項</label></li>
     </ul>
   </div>
   <div class="tl-detail" id="tl-1y">
     <h3>📅 術後 1 年 — 定期追蹤</h3>
-    <p style="font-size:0.88rem;color:var(--text-muted);">依醫師指示，在一年內於固定時間回診，追蹤毛囊生長狀況。</p>
+    <p style="font-size:0.86rem;color:var(--text-mid);">依醫師指示，在術後一年內按固定時間回診，追蹤毛囊生長狀況，確保植髮效果。</p>
   </div>
 </div>
 
+<!-- ═══ TABS ═══ -->
 <div class="tabs-wrap">
   <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('home', this)">🏠 總覽</button>
-    <button class="tab-btn" onclick="switchTab('preop', this)">📋 術前準備</button>
-    <button class="tab-btn" onclick="switchTab('wound', this)">🩹 傷口照護</button>
-    <button class="tab-btn" onclick="switchTab('wash', this)">🚿 洗頭步驟</button>
-    <button class="tab-btn" onclick="switchTab('sleep', this)">🛌 睡眠姿勢</button>
-    <button class="tab-btn" onclick="switchTab('diet', this)">🥗 飲食注意</button>
-    <button class="tab-btn" onclick="switchTab('checklist', this)">✅ 照護清單</button>
+    <button class="tab-btn active" onclick="switchTab('home',this)">✦ 總覽</button>
+    <button class="tab-btn" onclick="switchTab('preop',this)">📋 術前準備</button>
+    <button class="tab-btn" onclick="switchTab('wound',this)">🩹 傷口照護</button>
+    <button class="tab-btn" onclick="switchTab('wash',this)">🚿 洗頭步驟</button>
+    <button class="tab-btn" onclick="switchTab('sleep',this)">🛌 睡眠姿勢</button>
+    <button class="tab-btn" onclick="switchTab('diet',this)">🥗 飲食注意</button>
+    <button class="tab-btn" onclick="switchTab('checklist',this)">✅ 照護清單</button>
   </div>
 </div>
 
@@ -557,707 +722,555 @@
 
   <!-- SEARCH RESULTS -->
   <div class="search-results" id="searchResults">
-    <div class="section-title">🔍 搜尋結果</div>
+    <div class="section-title"><span class="st-icon">✦</span>搜尋結果</div>
     <div id="searchList"></div>
   </div>
 
-  <!-- HOME -->
+  <!-- ── HOME ── -->
   <div class="panel active" id="panel-home">
-    <div class="section-title">⚡ 快速查詢</div>
+    <div class="section-title"><span class="st-icon">⚡</span>快速查詢</div>
     <div class="quick-grid">
-      <div class="quick-card" onclick="switchTab('preop', document.querySelector('[onclick*=preop]'))">
+      <div class="quick-card" onclick="goToTab('preop')">
         <span class="qc-icon">📋</span>
-        <div class="qc-text">
-          <div class="qc-title">術前準備</div>
-          <div class="qc-sub">睡眠、飲食、用藥、穿著</div>
-        </div>
+        <div><div class="qc-title">術前準備</div><div class="qc-sub">睡眠·飲食·用藥·穿著</div></div>
       </div>
-      <div class="quick-card" onclick="switchTab('wound', document.querySelector('[onclick*=wound]'))">
+      <div class="quick-card" onclick="goToTab('wound')">
         <span class="qc-icon">🩹</span>
-        <div class="qc-text">
-          <div class="qc-title">傷口照護</div>
-          <div class="qc-sub">止血、消腫、防護、回診</div>
-        </div>
+        <div><div class="qc-title">傷口照護</div><div class="qc-sub">止血·消腫·防護·回診</div></div>
       </div>
-      <div class="quick-card" onclick="switchTab('wash', document.querySelector('[onclick*=wash]'))">
+      <div class="quick-card" onclick="goToTab('wash')">
         <span class="qc-icon">🚿</span>
-        <div class="qc-text">
-          <div class="qc-title">洗頭步驟</div>
-          <div class="qc-sub">時機、方式、洗髮精選擇</div>
-        </div>
+        <div><div class="qc-title">洗頭步驟</div><div class="qc-sub">時機·方式·洗髮精</div></div>
       </div>
-      <div class="quick-card" onclick="switchTab('sleep', document.querySelector('[onclick*=sleep]'))">
+      <div class="quick-card" onclick="goToTab('sleep')">
         <span class="qc-icon">🛌</span>
-        <div class="qc-text">
-          <div class="qc-title">睡眠姿勢</div>
-          <div class="qc-sub">術後3天的正確睡法</div>
-        </div>
+        <div><div class="qc-title">睡眠姿勢</div><div class="qc-sub">術後3天正確睡法</div></div>
       </div>
-      <div class="quick-card" onclick="switchTab('diet', document.querySelector('[onclick*=diet]'))">
+      <div class="quick-card" onclick="goToTab('diet')">
         <span class="qc-icon">🥗</span>
-        <div class="qc-text">
-          <div class="qc-title">飲食注意</div>
-          <div class="qc-sub">14天禁忌、用藥遵循</div>
-        </div>
+        <div><div class="qc-title">飲食注意</div><div class="qc-sub">14天禁忌·用藥遵循</div></div>
       </div>
-      <div class="quick-card" onclick="switchTab('checklist', document.querySelector('[onclick*=checklist]'))">
+      <div class="quick-card" onclick="goToTab('checklist')">
         <span class="qc-icon">✅</span>
-        <div class="qc-text">
-          <div class="qc-title">照護清單</div>
-          <div class="qc-sub">勾選每日照護項目</div>
-        </div>
+        <div><div class="qc-title">照護清單</div><div class="qc-sub">可勾選自動儲存</div></div>
       </div>
     </div>
 
-    <div class="section-title">⚠️ 重要提醒</div>
-    <div class="card warning">
-      <div class="card-header">
-        <div class="card-icon">🚨</div>
-        <div class="card-title">術後最重要的 3 件事</div>
+    <div class="section-title"><span class="st-icon">⚠</span>術後三大重點</div>
+    <div class="alert-banner">
+      <span class="ab-icon">✦</span>
+      <div>
+        <div class="ab-title">請務必遵守以下事項</div>
+        <ul>
+          <li>術後 <strong>36 小時內</strong> 禁止洗頭，之後以最弱水柱輕柔清洗</li>
+          <li>術後 <strong>7 天</strong> 外出戴通風帽，禁用一般洗髮精</li>
+          <li>術後 <strong>14 天</strong> 禁菸、禁酒、禁辛辣食物、禁阿斯匹靈</li>
+        </ul>
       </div>
-      <ul>
-        <li><strong>術後 36 小時內禁止洗頭</strong>，之後用最弱水柱輕柔清洗</li>
-        <li><strong>術後 7 天</strong>外出戴通風帽，禁用一般洗髮精</li>
-        <li><strong>術後 14 天</strong>禁菸、禁酒、禁辛辣食物</li>
-      </ul>
     </div>
 
-    <div class="section-title">📆 恢復時間軸</div>
-    <div class="card info">
-      <div class="card-header">
-        <div class="card-icon">📅</div>
-        <div class="card-title">預期恢復進程</div>
+    <div class="section-title"><span class="st-icon">📅</span>恢復時間軸</div>
+    <div class="recovery-timeline">
+      <div class="rt-item">
+        <div class="rt-header"><span class="rt-time">手術當天</span><span class="rt-title">傷口管理</span></div>
+        <div class="rt-desc">少量滲血屬正常，紗布加壓止血。冰敷前額舒緩腫脹。</div>
       </div>
-      <ul>
-        <li><strong>手術當天</strong>：少量滲血屬正常，冰敷前額預防腫脹</li>
-        <li><strong>1–2 天</strong>：腫脹通常在 1–2 天內消退</li>
-        <li><strong>36 小時後</strong>：可開始輕柔洗頭</li>
-        <li><strong>7 天後</strong>：可恢復使用一般洗髮精（待結痂脫落）</li>
-        <li><strong>1 個月</strong>：第一次回診，評估恢復狀況</li>
-        <li><strong>1 年內</strong>：依醫師指示定期回診追蹤</li>
-      </ul>
+      <div class="rt-item">
+        <div class="rt-header"><span class="rt-time">1–2 天</span><span class="rt-title">腫脹消退</span></div>
+        <div class="rt-desc">腫脹通常在 1–2 天內自然消退，不影響毛囊生長。</div>
+      </div>
+      <div class="rt-item">
+        <div class="rt-header"><span class="rt-time">36 小時後</span><span class="rt-title">開始輕柔洗頭</span></div>
+        <div class="rt-desc">可開始洗頭，使用最弱水柱、掌心起泡後輕拍頭皮。</div>
+      </div>
+      <div class="rt-item">
+        <div class="rt-header"><span class="rt-time">7 天後</span><span class="rt-title">結痂脫落</span></div>
+        <div class="rt-desc">結痂形成脫落後，可恢復使用常規洗髮精。仍須輕柔。</div>
+      </div>
+      <div class="rt-item">
+        <div class="rt-header"><span class="rt-time">1 個月</span><span class="rt-title">首次回診</span></div>
+        <div class="rt-desc">醫師評估恢復狀況，確認是否可恢復正常力道洗頭。</div>
+      </div>
+      <div class="rt-item">
+        <div class="rt-header"><span class="rt-time">1 年內</span><span class="rt-title">定期追蹤</span></div>
+        <div class="rt-desc">依醫師指示，於固定時間回診，追蹤毛囊生長情形。</div>
+      </div>
     </div>
   </div>
 
-  <!-- PREOP -->
+  <!-- ── PRE-OP ── -->
   <div class="panel" id="panel-preop">
-    <div class="section-title">💤 睡眠與交通</div>
+    <div class="section-title"><span class="st-icon">😴</span>睡眠與交通</div>
     <div class="card">
-      <div class="card-header">
-        <div class="card-icon">😴</div>
-        <div class="card-title">充足睡眠</div>
-      </div>
+      <div class="card-header"><div class="card-icon">🌙</div><div class="card-title">充足睡眠，安排接送</div></div>
       <ul>
-        <li>手術前 1 日<strong>請勿熬夜</strong>，保持充足睡眠</li>
+        <li>手術前 1 日 <strong>請勿熬夜</strong>，保持充足睡眠</li>
         <li>手術當日建議由他人接送或搭乘大眾運輸</li>
-        <li>避免自行駕車，以確保安全</li>
+        <li>避免自行駕車，確保安全</li>
       </ul>
     </div>
 
-    <div class="section-title">🧴 頭髮準備</div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">💆</div>
-        <div class="card-title">術日早上洗頭</div>
-      </div>
+    <div class="section-title"><span class="st-icon">💆</span>頭髮準備</div>
+    <div class="card gold-card">
+      <div class="card-header"><div class="card-icon">🧴</div><div class="card-title">術日早上洗頭後不擦任何產品</div></div>
       <ul>
-        <li>手術當日<strong>早上請洗頭</strong></li>
-        <li>洗髮後頭皮<strong>不可擦任何東西</strong>，包含：
-          <ul style="margin-top:0.3rem;padding-left:1rem;">
-            <li>生髮水</li>
-            <li>護髮產品</li>
-            <li>造型品</li>
-          </ul>
-        </li>
+        <li>手術當日 <strong>早上請洗頭</strong></li>
+        <li>洗後頭皮 <strong>不可擦任何東西</strong>，包括：生髮水、護髮乳、造型品</li>
       </ul>
     </div>
 
-    <div class="section-title">💊 用藥與過敏</div>
-    <div class="card warning">
-      <div class="card-header">
-        <div class="card-icon">⚠️</div>
-        <div class="card-title">必須主動告知醫護人員</div>
-      </div>
+    <div class="section-title"><span class="st-icon">⚠</span>用藥與過敏</div>
+    <div class="card danger-card">
+      <div class="card-header"><div class="card-icon">💊</div><div class="card-title">必須主動告知醫護人員</div></div>
       <ul>
-        <li>目前服用的<strong>所有藥品</strong>（可能影響凝血功能）</li>
-        <li>對麻醉藥劑的過敏史</li>
-        <li>對任何藥品或食物的過敏史</li>
+        <li>目前服用的 <strong>所有藥品</strong>（可能影響凝血功能）</li>
+        <li>麻醉藥劑過敏史</li>
+        <li>任何藥品或食物過敏史</li>
       </ul>
     </div>
 
-    <div class="section-title">🍽️ 飲食限制</div>
+    <div class="section-title"><span class="st-icon">🍽</span>飲食限制</div>
     <div class="grid-2">
-      <div class="card warning">
-        <div class="card-header">
-          <div class="card-icon">🍺</div>
-          <div class="card-title">禁止飲酒</div>
-        </div>
-        <ul>
-          <li>術前 <strong>48 小時內</strong>嚴格禁止飲酒</li>
-        </ul>
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">🍺</div><div class="card-title">禁止飲酒</div></div>
+        <ul><li>術前 <strong>48 小時內</strong> 嚴格禁止飲酒</li></ul>
       </div>
-      <div class="card warning">
-        <div class="card-header">
-          <div class="card-icon">☕</div>
-          <div class="card-title">避免咖啡因</div>
-        </div>
-        <ul>
-          <li>手術<strong>當日</strong>避免含咖啡因飲品（咖啡、茶、能量飲料等）</li>
-        </ul>
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">☕</div><div class="card-title">避免咖啡因</div></div>
+        <ul><li>手術 <strong>當日</strong> 避免含咖啡因飲品</li></ul>
       </div>
     </div>
-    <div class="card success">
-      <div class="card-header">
-        <div class="card-icon">🥣</div>
-        <div class="card-title">適量進食</div>
-      </div>
-      <ul>
-        <li>早餐需<strong>適量進食</strong>，維持體力</li>
-        <li><strong>勿空腹</strong>前往手術</li>
-      </ul>
+    <div class="card teal-card">
+      <div class="card-header"><div class="card-icon">🥣</div><div class="card-title">適量進食，勿空腹</div></div>
+      <ul><li>早餐需 <strong>適量進食</strong> 維持體力，切勿空腹前往</li></ul>
     </div>
 
-    <div class="section-title">👕 穿著建議</div>
+    <div class="section-title"><span class="st-icon">👕</span>穿著建議</div>
     <div class="grid-2">
-      <div class="card success">
-        <div class="card-header">
-          <div class="card-icon">✅</div>
-          <div class="card-title">建議穿著</div>
-        </div>
-        <ul>
-          <li>寬鬆、易脫穿的衣物</li>
-          <li>排釦或拉鍊式上衣</li>
-        </ul>
+      <div class="card teal-card">
+        <div class="card-header"><div class="card-icon">✅</div><div class="card-title">建議穿著</div></div>
+        <ul><li>寬鬆易穿脫的排釦或拉鍊上衣</li></ul>
       </div>
-      <div class="card warning">
-        <div class="card-header">
-          <div class="card-icon">❌</div>
-          <div class="card-title">禁止穿著</div>
-        </div>
-        <ul>
-          <li><strong>套頭式衣服</strong></li>
-          <li>避免拉扯或接觸種植部位</li>
-        </ul>
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">❌</div><div class="card-title">禁止穿著</div></div>
+        <ul><li><strong>套頭式衣服</strong>，避免拉扯種植部位</li></ul>
       </div>
     </div>
   </div>
 
-  <!-- WOUND -->
+  <!-- ── WOUND ── -->
   <div class="panel" id="panel-wound">
-    <div class="section-title">🩸 滲液與止血</div>
+    <div class="section-title"><span class="st-icon">🩸</span>滲液與止血</div>
     <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🩹</div>
-        <div class="card-title">少量滲血屬正常</div>
-      </div>
+      <div class="card-header"><div class="card-icon">🩹</div><div class="card-title">少量滲血屬正常現象</div></div>
       <ul>
-        <li>術後若傷口有<strong>少量滲血或滲液</strong>，為正常現象</li>
-        <li>處理方式：使用紗布直接加壓於傷口處 <strong>3 分鐘</strong></li>
-        <li>若大量出血或長時間不止，請立即聯絡診所</li>
+        <li>術後若有 <strong>少量滲血或滲液</strong>，為正常現象，請勿驚慌</li>
+        <li>處理方式：紗布直接 <strong>加壓於傷口 3 分鐘</strong></li>
+        <li>若大量出血或持續不止，請立即聯絡診所</li>
       </ul>
     </div>
 
-    <div class="section-title">🧊 腫脹處理</div>
-    <div class="card info">
-      <div class="card-header">
-        <div class="card-icon">🧊</div>
-        <div class="card-title">冰敷舒緩腫脹</div>
-      </div>
+    <div class="section-title"><span class="st-icon">🧊</span>腫脹處理</div>
+    <div class="card teal-card">
+      <div class="card-header"><div class="card-icon">🧊</div><div class="card-title">冰敷舒緩，1–2 天內消退</div></div>
       <ul>
-        <li>腫脹通常在 <strong>1–2 天</strong>內消退，<strong>不影響毛囊生長</strong></li>
-        <li>冰敷部位：<strong>前額</strong>與<strong>太陽穴</strong>（非直接在種植區）</li>
+        <li>腫脹通常 <strong>1–2 天</strong> 內消退，<strong>不影響毛囊生長</strong></li>
+        <li>冰敷部位：<strong>前額</strong> 與 <strong>太陽穴</strong>（非直接在種植區）</li>
         <li>冰敷方式：每次 <strong>20 分鐘</strong>，休息 20 分鐘，交替進行</li>
       </ul>
     </div>
 
-    <div class="section-title">🎩 外出防護</div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🎩</div>
-        <div class="card-title">術後 7 天戴帽</div>
-      </div>
+    <div class="section-title"><span class="st-icon">🎩</span>外出防護</div>
+    <div class="card gold-card">
+      <div class="card-header"><div class="card-icon">🎩</div><div class="card-title">術後 7 天外出必戴帽</div></div>
       <ul>
-        <li>術後 <strong>7 天內</strong>外出時，盡量戴<strong>通風性高的帽子</strong></li>
-        <li>目的：避免傷口感染、防止紫外線照射</li>
+        <li>術後 <strong>7 天內</strong> 外出時，戴 <strong>通風性高的帽子</strong></li>
+        <li>避免傷口感染、防止紫外線直射</li>
       </ul>
       <div class="tags">
-        <span class="tag">透氣帽</span>
-        <span class="tag">防曬</span>
-        <span class="tag red">禁戴悶熱帽子</span>
+        <span class="tag teal">透氣材質</span>
+        <span class="tag teal">防曬防塵</span>
+        <span class="tag red">禁悶熱帽款</span>
       </div>
     </div>
 
-    <div class="section-title">💆 假髮與特殊情況</div>
-    <div class="card warning">
-      <div class="card-header">
-        <div class="card-icon">⚠️</div>
-        <div class="card-title">假髮須醫師評估</div>
+    <div class="section-title"><span class="st-icon">💆</span>特殊注意</div>
+    <div class="grid-2">
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">⚠️</div><div class="card-title">假髮禁自行佩戴</div></div>
+        <ul><li>需經 <strong>醫師術後評估</strong> 才可使用假髮</li></ul>
       </div>
-      <ul>
-        <li>術後<strong>禁止自行佩戴假髮</strong></li>
-        <li>需經醫師術後評估，確認傷口狀態後，才可使用</li>
-      </ul>
-    </div>
-
-    <div class="section-title">🏥 回診追蹤</div>
-    <div class="card success">
-      <div class="card-header">
-        <div class="card-icon">📆</div>
-        <div class="card-title">回診計畫</div>
+      <div class="card teal-card">
+        <div class="card-header"><div class="card-icon">📆</div><div class="card-title">回診計畫</div></div>
+        <ul>
+          <li><strong>1 個月內</strong>：第一次回診</li>
+          <li><strong>1 年內</strong>：依醫師指示定期追蹤</li>
+        </ul>
       </div>
-      <ul>
-        <li>術後<strong>一個月內</strong>：視狀況安排第一次回診</li>
-        <li>術後<strong>一年內</strong>：依醫師指示，於固定時間定期回診</li>
-        <li>回診可評估：毛囊生長情況、是否可恢復正常洗頭力道</li>
-      </ul>
     </div>
   </div>
 
-  <!-- WASH -->
+  <!-- ── WASH ── -->
   <div class="panel" id="panel-wash">
-    <div class="card warning" style="margin-bottom:1rem;">
-      <div class="card-header">
-        <div class="card-icon">⏰</div>
-        <div class="card-title">重要：36 小時後才可洗頭</div>
+    <div class="alert-banner">
+      <span class="ab-icon">⏱</span>
+      <div>
+        <div class="ab-title">術後 36 小時內禁止洗頭</div>
+        <ul><li>36 小時後才可開始洗髮，期間避免頭部接觸水</li></ul>
       </div>
-      <ul>
-        <li>術後 <strong>36 小時內</strong>請避免洗頭髮及接觸水</li>
-        <li>36 小時後，才可開始洗髮</li>
-      </ul>
     </div>
 
-    <div class="section-title">🚿 正確洗頭步驟</div>
+    <div class="section-title"><span class="st-icon">🚿</span>正確洗頭五步驟</div>
     <div class="card">
       <div class="steps">
         <div class="step-item">
           <div class="step-num"></div>
           <div class="step-content">
             <h4>調整水柱至最弱</h4>
-            <p>沖洗時，水柱調至最弱、水量調至最小。<strong>禁止使用強力水流</strong>直接沖洗頭皮。</p>
+            <p>水量及水壓調至最小，<strong>禁止使用強力水流</strong> 直接沖洗頭皮。</p>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num"></div>
           <div class="step-content">
             <h4>掌心起泡後輕拍</h4>
-            <p>將洗髮精先在<strong>掌心抹泡</strong>後，再以<strong>輕碰頭皮的方式</strong>清潔。<strong>絕對不可用指甲抓揉頭皮</strong>。</p>
+            <p>洗髮精先在 <strong>掌心搓泡</strong>，再以 <strong>輕碰頭皮的方式</strong> 清潔。<strong>絕不可用指甲抓揉。</strong></p>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num"></div>
           <div class="step-content">
-            <h4>輕柔沖水</h4>
-            <p>以最弱水柱將泡沫沖淨，避免直接沖在種植區域。</p>
+            <h4>弱水柱輕輕沖淨</h4>
+            <p>以最弱水柱緩緩將泡沫沖淨，避免直接沖在種植部位。</p>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num"></div>
           <div class="step-content">
             <h4>毛巾輕壓吸乾</h4>
-            <p>用毛巾<strong>輕輕吸乾水分</strong>，勿揉搓頭皮。</p>
+            <p>以毛巾 <strong>輕輕吸乾水分</strong>，勿揉搓頭皮。</p>
           </div>
         </div>
         <div class="step-item">
           <div class="step-num"></div>
           <div class="step-content">
-            <h4>冷風低速吹乾</h4>
-            <p>使用吹風機時，距離不可過近，使用<strong>微弱冷風</strong>輕吹，避免高溫傷害毛囊。</p>
+            <h4>微弱冷風低速吹乾</h4>
+            <p>吹風機距離不可過近，使用 <strong>微弱冷風</strong>，避免高溫傷害毛囊。</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="section-title">🧴 洗髮精選用規範</div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">📅</div>
-        <div class="card-title">依階段使用不同洗髮精</div>
-      </div>
+    <div class="section-title"><span class="st-icon">🧴</span>洗髮精選用規範</div>
+    <div class="card gold-card">
+      <div class="card-header"><div class="card-icon">📅</div><div class="card-title">依恢復階段使用</div></div>
       <ul>
-        <li><span class="badge badge-red">術後 7 天內</span>　禁用一般洗髮精，使用診所建議的溫和產品</li>
-        <li><span class="badge badge-blue">結痂脫落後</span>　待結痂形成脫落後，方可使用常規洗髮精</li>
-        <li><span class="badge badge-green">1 個月後</span>　回診後，醫師評估通過，可用正常力道清洗</li>
+        <li><span class="badge badge-red">術後 7 天內</span>　禁用一般洗髮精，使用診所建議之溫和產品</li>
+        <li><span class="badge badge-teal">結痂脫落後</span>　結痂自然脫落後，方可使用常規洗髮精</li>
+        <li><span class="badge badge-gold">1 個月回診後</span>　經醫師評估通過，可用正常力道清洗</li>
       </ul>
     </div>
 
-    <div class="section-title">❌ 洗頭禁忌</div>
-    <div class="card warning">
-      <div class="card-header">
-        <div class="card-icon">🚫</div>
-        <div class="card-title">務必避免</div>
-      </div>
+    <div class="section-title"><span class="st-icon">🚫</span>絕對禁止</div>
+    <div class="card danger-card">
+      <div class="card-header"><div class="card-icon">🚫</div><div class="card-title">洗頭四大禁忌</div></div>
       <ul>
-        <li>用指甲抓揉頭皮</li>
-        <li>使用強力水柱沖洗</li>
-        <li>高溫或強風吹乾</li>
-        <li>術後 7 天內使用一般洗髮精</li>
+        <li>用 <strong>指甲抓揉</strong> 頭皮</li>
+        <li>使用 <strong>強力水柱</strong> 直接沖洗</li>
+        <li><strong>高溫或強風</strong> 吹乾（吹風機過近）</li>
+        <li>術後 7 天內使用 <strong>一般洗髮精</strong></li>
       </ul>
     </div>
   </div>
 
-  <!-- SLEEP -->
+  <!-- ── SLEEP ── -->
   <div class="panel" id="panel-sleep">
-    <div class="section-title">🛌 術後 3 天睡姿</div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">😴</div>
-        <div class="card-title">平躺姿勢入眠</div>
-      </div>
+    <div class="section-title"><span class="st-icon">🛌</span>術後 3 天睡姿</div>
+    <div class="card gold-card">
+      <div class="card-header"><div class="card-icon">😴</div><div class="card-title">平躺入眠，保護種植區</div></div>
       <ul>
-        <li>術後 <strong>三天內</strong>，睡覺時<strong>儘量保持頭部平躺</strong></li>
+        <li>術後 <strong>三天內</strong>，睡覺時 <strong>頭部保持平躺</strong></li>
         <li>以平躺姿勢入眠，減少對種植部位的壓迫</li>
         <li>避免側躺直接壓迫到種植區</li>
       </ul>
     </div>
 
-    <div class="section-title">😮 有臉部水腫時</div>
-    <div class="card info">
-      <div class="card-header">
-        <div class="card-icon">💧</div>
-        <div class="card-title">調整睡姿消腫</div>
-      </div>
+    <div class="section-title"><span class="st-icon">💧</span>有水腫時的調整</div>
+    <div class="card teal-card">
+      <div class="card-header"><div class="card-icon">💧</div><div class="card-title">下巴上仰，促進消腫</div></div>
       <ul>
-        <li>若有<strong>臉部水腫</strong>，調整為<strong>下巴上仰</strong>的姿勢</li>
-        <li>適度<strong>抬高頭部</strong>，促進液體回流，幫助消腫</li>
+        <li>若有 <strong>臉部水腫</strong>，調整為 <strong>下巴上仰</strong> 的姿勢</li>
+        <li>適度 <strong>抬高頭部</strong>，促進液體回流，幫助消腫</li>
         <li>可在頸部放置薄枕輔助支撐</li>
       </ul>
     </div>
 
-    <div class="section-title">🛏️ 床單保護</div>
+    <div class="section-title"><span class="st-icon">🪣</span>床單保護</div>
     <div class="card">
-      <div class="card-header">
-        <div class="card-icon">🪣</div>
-        <div class="card-title">防止滲液污染</div>
-      </div>
+      <div class="card-header"><div class="card-icon">🛏</div><div class="card-title">深色毛巾鋪於枕頭上</div></div>
       <ul>
-        <li>術後若有滲液，可在枕頭上覆蓋<strong>深色毛巾</strong></li>
-        <li>深色毛巾較不明顯，也方便清洗</li>
+        <li>術後若有滲液，可在枕頭上覆蓋 <strong>深色毛巾</strong></li>
+        <li>深色毛巾較不明顯污漬，也方便清洗</li>
       </ul>
     </div>
 
-    <div class="card warning">
-      <div class="card-header">
-        <div class="card-icon">⚠️</div>
-        <div class="card-title">睡眠注意事項</div>
-      </div>
+    <div class="card danger-card">
+      <div class="card-header"><div class="card-icon">⚠️</div><div class="card-title">睡眠注意事項</div></div>
       <ul>
         <li>避免翻身壓迫或摩擦種植部位</li>
-        <li>若不小心壓到，請輕輕調整，不要用手揉搓</li>
+        <li>若不小心壓到，請輕輕調整，<strong>不要揉搓</strong></li>
         <li>3 天後可逐漸恢復正常睡姿，仍需輕柔對待頭皮</li>
       </ul>
     </div>
   </div>
 
-  <!-- DIET -->
+  <!-- ── DIET ── -->
   <div class="panel" id="panel-diet">
-    <div class="section-title">💊 用藥遵循</div>
-    <div class="card success">
-      <div class="card-header">
-        <div class="card-icon">💊</div>
-        <div class="card-title">按時服藥</div>
-      </div>
+    <div class="section-title"><span class="st-icon">💊</span>用藥遵循</div>
+    <div class="card teal-card">
+      <div class="card-header"><div class="card-icon">💊</div><div class="card-title">依醫師指示按時服藥</div></div>
       <ul>
-        <li><strong>依醫師指示</strong>用藥，勿自行停藥或更改劑量</li>
+        <li><strong>依醫師指示</strong> 用藥，勿自行停藥或更改劑量</li>
         <li>若有任何不適，立即聯絡診所</li>
       </ul>
     </div>
 
-    <div class="section-title">🚫 術後 14 天飲食禁忌</div>
+    <div class="section-title"><span class="st-icon">🚫</span>術後 14 天飲食禁忌</div>
     <div class="grid-2">
-      <div class="card warning">
-        <div class="card-header">
-          <div class="card-icon">🌶️</div>
-          <div class="card-title">辛辣食物</div>
-        </div>
-        <ul>
-          <li>避免辣椒、胡椒等刺激性食物</li>
-          <li>可能影響傷口癒合及血液循環</li>
-        </ul>
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">🌶️</div><div class="card-title">辛辣食物</div></div>
+        <ul><li>避免辣椒、胡椒等刺激性食物，影響傷口癒合</li></ul>
       </div>
-      <div class="card warning">
-        <div class="card-header">
-          <div class="card-icon">🌿</div>
-          <div class="card-title">不明中藥</div>
-        </div>
-        <ul>
-          <li>禁用不明成分的中藥材</li>
-          <li>可能影響凝血功能或藥物交互作用</li>
-        </ul>
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">🌿</div><div class="card-title">不明中藥</div></div>
+        <ul><li>禁用不明成分中藥材，可能影響凝血功能</li></ul>
       </div>
-      <div class="card warning">
-        <div class="card-header">
-          <div class="card-icon">💊</div>
-          <div class="card-title">阿斯匹靈</div>
-        </div>
-        <ul>
-          <li>禁止服用阿斯匹靈（非醫師指示）</li>
-          <li>會影響血小板凝血功能</li>
-        </ul>
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">💊</div><div class="card-title">阿斯匹靈</div></div>
+        <ul><li>會影響血小板凝血，除非醫師指示否則禁用</li></ul>
       </div>
-      <div class="card warning">
-        <div class="card-header">
-          <div class="card-icon">🚬</div>
-          <div class="card-title">抽菸</div>
-        </div>
-        <ul>
-          <li>術後 14 天內<strong>嚴格禁止抽菸</strong></li>
-          <li>尼古丁會收縮血管，影響毛囊生長</li>
-        </ul>
+      <div class="card danger-card">
+        <div class="card-header"><div class="card-icon">🚬</div><div class="card-title">抽菸</div></div>
+        <ul><li>尼古丁收縮血管，嚴重影響毛囊生長，嚴格禁止</li></ul>
       </div>
     </div>
-
-    <div class="card warning">
-      <div class="card-header">
-        <div class="card-icon">🍺</div>
-        <div class="card-title">禁止飲酒（術後 14 天）</div>
-      </div>
-      <ul>
-        <li>酒精會影響傷口癒合及藥物效果</li>
-        <li>14 天後如需飲酒，建議先諮詢醫師</li>
-      </ul>
+    <div class="card danger-card">
+      <div class="card-header"><div class="card-icon">🍺</div><div class="card-title">禁止飲酒（術後 14 天）</div></div>
+      <ul><li>酒精影響傷口癒合及藥物效果，14 天後如需飲酒請先諮詢醫師</li></ul>
     </div>
 
-    <div class="section-title">✅ 建議飲食</div>
-    <div class="card success">
-      <div class="card-header">
-        <div class="card-icon">🥗</div>
-        <div class="card-title">有助恢復的飲食</div>
-      </div>
+    <div class="section-title"><span class="st-icon">✅</span>建議攝取</div>
+    <div class="card teal-card">
+      <div class="card-header"><div class="card-icon">🥗</div><div class="card-title">有助毛囊修復的飲食</div></div>
       <ul>
-        <li><strong>蛋白質豐富食物</strong>：雞胸肉、魚、蛋、豆腐（有助毛囊修復）</li>
-        <li><strong>新鮮蔬果</strong>：維生素 C 幫助傷口癒合</li>
-        <li><strong>多喝水</strong>：保持水分充足</li>
+        <li><strong>優質蛋白質</strong>：雞胸肉、魚類、雞蛋、豆腐</li>
+        <li><strong>新鮮蔬果</strong>：維生素 C 有助傷口癒合</li>
+        <li><strong>充足水分</strong>：每日 2,000ml 以上</li>
         <li>清淡、易消化的食物為主</li>
       </ul>
     </div>
   </div>
 
-  <!-- CHECKLIST -->
+  <!-- ── CHECKLIST ── -->
   <div class="panel" id="panel-checklist">
-    <div class="card info" style="margin-bottom:1rem;">
-      <div class="card-header">
-        <div class="card-icon">ℹ️</div>
-        <div class="card-title">使用說明</div>
-      </div>
+    <div class="card teal-card" style="margin-bottom:1rem;">
+      <div class="card-header"><div class="card-icon">ℹ️</div><div class="card-title">使用說明</div></div>
       <ul>
-        <li>勾選已完成的照護項目</li>
-        <li>勾選狀態<strong>儲存於本裝置</strong>，重新整理後不會清除</li>
+        <li>勾選已完成的照護項目，狀態 <strong>自動儲存於本裝置</strong></li>
+        <li>重新整理頁面後，勾選記錄不會遺失</li>
       </ul>
     </div>
 
-    <div class="section-title">📋 術前準備清單</div>
+    <div class="section-title"><span class="st-icon">📋</span>術前準備清單</div>
     <div class="card">
-      <ul class="checklist" id="cl-preop">
-        <li><input type="checkbox" id="cl1"><label for="cl1">術前1日勿熬夜，保持充足睡眠</label></li>
-        <li><input type="checkbox" id="cl2"><label for="cl2">術前48小時禁止飲酒</label></li>
+      <ul class="checklist">
+        <li><input type="checkbox" id="cl1"><label for="cl1">術前 1 日勿熬夜，保持充足睡眠</label></li>
+        <li><input type="checkbox" id="cl2"><label for="cl2">術前 48 小時禁止飲酒</label></li>
         <li><input type="checkbox" id="cl3"><label for="cl3">手術當日避免咖啡因飲品</label></li>
         <li><input type="checkbox" id="cl4"><label for="cl4">手術當日早上洗頭，洗後不擦任何產品</label></li>
         <li><input type="checkbox" id="cl5"><label for="cl5">適量吃早餐，勿空腹</label></li>
         <li><input type="checkbox" id="cl6"><label for="cl6">告知醫護所有服用藥物</label></li>
         <li><input type="checkbox" id="cl7"><label for="cl7">告知所有過敏史</label></li>
-        <li><input type="checkbox" id="cl8"><label for="cl8">安排他人接送</label></li>
-        <li><input type="checkbox" id="cl9"><label for="cl9">穿著寬鬆排釦上衣（非套頭）</label></li>
+        <li><input type="checkbox" id="cl8"><label for="cl8">安排他人接送，勿自行駕車</label></li>
+        <li><input type="checkbox" id="cl9"><label for="cl9">穿著寬鬆排釦上衣（非套頭式）</label></li>
       </ul>
     </div>
 
-    <div class="section-title">🩹 術後照護清單（第1天）</div>
+    <div class="section-title"><span class="st-icon">🩹</span>術後第 1 天</div>
     <div class="card">
       <ul class="checklist">
-        <li><input type="checkbox" id="cl10"><label for="cl10">傷口滲血時，紗布加壓3分鐘</label></li>
-        <li><input type="checkbox" id="cl11"><label for="cl11">前額/太陽穴交替冰敷（20分鐘on/off）</label></li>
+        <li><input type="checkbox" id="cl10"><label for="cl10">傷口滲血時，紗布加壓 3 分鐘</label></li>
+        <li><input type="checkbox" id="cl11"><label for="cl11">前額及太陽穴交替冰敷</label></li>
         <li><input type="checkbox" id="cl12"><label for="cl12">保持頭部平躺睡姿</label></li>
-        <li><input type="checkbox" id="cl13"><label for="cl13">依醫師指示服藥</label></li>
+        <li><input type="checkbox" id="cl13"><label for="cl13">依醫師指示按時服藥</label></li>
         <li><input type="checkbox" id="cl14"><label for="cl14">避免辛辣、酒精、菸</label></li>
       </ul>
     </div>
 
-    <div class="section-title">🚿 洗頭清單（36小時後開始）</div>
+    <div class="section-title"><span class="st-icon">🚿</span>洗頭清單（36小時後）</div>
     <div class="card">
       <ul class="checklist">
         <li><input type="checkbox" id="cl15"><label for="cl15">水柱調至最弱</label></li>
         <li><input type="checkbox" id="cl16"><label for="cl16">洗髮精先在掌心起泡</label></li>
         <li><input type="checkbox" id="cl17"><label for="cl17">輕輕拍洗，不抓不揉</label></li>
         <li><input type="checkbox" id="cl18"><label for="cl18">毛巾輕壓吸乾</label></li>
-        <li><input type="checkbox" id="cl19"><label for="cl19">冷風低速吹乾</label></li>
+        <li><input type="checkbox" id="cl19"><label for="cl19">微弱冷風低速吹乾</label></li>
       </ul>
     </div>
 
-    <div class="section-title">📅 術後重要時程</div>
+    <div class="section-title"><span class="st-icon">📅</span>重要時程追蹤</div>
     <div class="card">
       <ul class="checklist">
-        <li><input type="checkbox" id="cl20"><label for="cl20">術後7天：外出戴通風帽</label></li>
-        <li><input type="checkbox" id="cl21"><label for="cl21">術後7天：禁用一般洗髮精</label></li>
-        <li><input type="checkbox" id="cl22"><label for="cl22">術後14天：完整禁菸禁酒禁辛辣</label></li>
-        <li><input type="checkbox" id="cl23"><label for="cl23">術後1個月內：安排首次回診</label></li>
-        <li><input type="checkbox" id="cl24"><label for="cl24">術後1年內：依醫師指示定期回診</label></li>
+        <li><input type="checkbox" id="cl20"><label for="cl20">術後 7 天：外出戴通風帽</label></li>
+        <li><input type="checkbox" id="cl21"><label for="cl21">術後 7 天：禁用一般洗髮精</label></li>
+        <li><input type="checkbox" id="cl22"><label for="cl22">術後 14 天：完整禁菸禁酒禁辛辣</label></li>
+        <li><input type="checkbox" id="cl23"><label for="cl23">術後 1 個月內：安排首次回診</label></li>
+        <li><input type="checkbox" id="cl24"><label for="cl24">術後 1 年內：依醫師指示定期回診</label></li>
       </ul>
     </div>
 
-    <div style="margin-top:1rem;text-align:center;">
-      <button onclick="resetChecklist()" style="padding:0.5rem 1.5rem;background:var(--warning);color:white;border:none;border-radius:30px;font-size:0.85rem;cursor:pointer;font-weight:600;">
-        重置所有勾選
-      </button>
+    <div style="margin-top:1.2rem;text-align:center;">
+      <button class="btn-outline" onclick="resetChecklist()">重置所有勾選</button>
     </div>
   </div>
 
 </main>
 
+<footer>
+  <strong>楊氏羅丹醫療集團 · ASIR &amp; RODIN MEDICAL COSMETIC CLINIC</strong><br>
+  <span style="margin-top:0.3rem;display:block;">ARTAS 植髮原廠認證教學機構 · Since 2000</span>
+</footer>
+
 <script>
-  // ─── TAB SWITCHING ───────────────────────────────────────────
-  function switchTab(name, btn) {
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+// ── TAB SWITCHING ──────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('panel-' + name);
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
+  clearSearch();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Fix tab button clicks
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('panel-' + name).classList.add('active');
-    if (btn) btn.classList.add('active');
-    clearSearch();
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  // Fix tab button onclick references
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-    });
+    this.classList.add('active');
   });
+});
 
-  // ─── TIMELINE ────────────────────────────────────────────────
-  function showTimeline(id, el) {
-    const allDetails = document.querySelectorAll('.tl-detail');
-    const allItems = document.querySelectorAll('.tl-item');
-
-    const targetDetail = document.getElementById(id);
-    const isOpen = targetDetail.classList.contains('active');
-
-    allDetails.forEach(d => d.classList.remove('active'));
-    allItems.forEach(i => i.classList.remove('active'));
-
-    if (!isOpen) {
-      targetDetail.classList.add('active');
-      el.classList.add('active');
-      targetDetail.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-    }
+// ── TIMELINE ──────────────────────────────────────────────────
+function showTimeline(id, el) {
+  const target = document.getElementById(id);
+  const isOpen = target.classList.contains('active');
+  document.querySelectorAll('.tl-detail').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.tl-btn').forEach(i => i.classList.remove('active'));
+  if (!isOpen) {
+    target.classList.add('active');
+    el.classList.add('active');
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
   }
+}
 
-  // ─── SEARCH ──────────────────────────────────────────────────
-  const searchData = [
-    { category: '術前準備', title: '充足睡眠', text: '手術前1日請勿熬夜，保持充足睡眠。', tab: 'preop' },
-    { category: '術前準備', title: '交通安排', text: '手術當日建議由他人接送或搭乘大眾運輸，避免自行駕車。', tab: 'preop' },
-    { category: '術前準備', title: '術日洗頭', text: '手術當日早上請洗頭，洗髮後頭皮不可擦任何東西，含生髮水或護髮產品。', tab: 'preop' },
-    { category: '術前準備', title: '用藥告知', text: '必須告知所有服用的藥品，可能影響凝血功能。', tab: 'preop' },
-    { category: '術前準備', title: '過敏告知', text: '必須主動告知麻醉藥劑、藥品或食物過敏史。', tab: 'preop' },
-    { category: '術前準備', title: '術前禁酒', text: '術前48小時內禁止飲酒。', tab: 'preop' },
-    { category: '術前準備', title: '避免咖啡因', text: '手術當日避免咖啡因飲品，如咖啡、茶、能量飲料。', tab: 'preop' },
-    { category: '術前準備', title: '進食建議', text: '早餐需適量進食，勿空腹前往手術。', tab: 'preop' },
-    { category: '術前準備', title: '穿著建議', text: '應穿著寬鬆、易脫穿的衣物如排釦襯衫，禁穿套頭式衣服，避免拉扯種髮部位。', tab: 'preop' },
-    { category: '傷口照護', title: '傷口滲血', text: '植髮手術後若傷口有少量滲血或滲液為正常情況，可以使用紗布直接加壓於傷口處三分鐘。', tab: 'wound' },
-    { category: '傷口照護', title: '腫脹消退', text: '腫脹通常在1-2天內消退，不影響毛囊生長。', tab: 'wound' },
-    { category: '傷口照護', title: '冰敷方法', text: '可在前額與太陽穴冰敷，每次20分鐘，休息20分鐘交替進行。', tab: 'wound' },
-    { category: '傷口照護', title: '外出戴帽', text: '植髮手術後7天內盡量於外出時戴通風性高的帽子，避免傷口感染。', tab: 'wound' },
-    { category: '傷口照護', title: '假髮使用', text: '假髮需經醫師術後評估才可使用，禁止自行佩戴。', tab: 'wound' },
-    { category: '傷口照護', title: '回診追蹤', text: '植髮手術後一個月內視狀況做第一次回診，並於一年內依照醫師指示，於固定時間回診。', tab: 'wound' },
-    { category: '洗頭步驟', title: '洗頭時機', text: '植髮手術後36小時內請避免洗頭髮及接觸水，於36小時後才可以開始洗頭髮。', tab: 'wash' },
-    { category: '洗頭步驟', title: '水柱調整', text: '沖洗頭髮時儘量將水柱調至最弱、水量調至最小，禁止使用強力水流。', tab: 'wash' },
-    { category: '洗頭步驟', title: '清洗方式', text: '洗頭髮時將洗髮精先於掌心抹泡後，以輕碰頭皮的方式清潔即可，不可以用指甲抓揉頭皮。', tab: 'wash' },
-    { category: '洗頭步驟', title: '吹乾方式', text: '用毛巾輕輕吸乾水分，使用吹風機時，距離勿過近，使用微弱冷風。', tab: 'wash' },
-    { category: '洗頭步驟', title: '洗髮精選用', text: '術後7天內禁用一般洗髮精，結痂後方可使用常規洗髮精，1個月後經醫師評估可用正常力道清洗。', tab: 'wash' },
-    { category: '睡眠姿勢', title: '平躺入眠', text: '植髮手術後三天內，睡覺時請儘量讓頭部保持平躺，以平躺姿勢入眠。', tab: 'sleep' },
-    { category: '睡眠姿勢', title: '水腫睡姿', text: '若有臉部水腫，採下巴上仰姿勢睡眠，適度抬高頭部以促進消腫。', tab: 'sleep' },
-    { category: '睡眠姿勢', title: '枕頭保護', text: '若有滲液，可在枕頭上覆蓋深色毛巾，避免污染床單。', tab: 'sleep' },
-    { category: '飲食注意', title: '按時服藥', text: '請依醫師指示用藥，按時服用藥物，不可自行停藥。', tab: 'diet' },
-    { category: '飲食注意', title: '禁辛辣食物', text: '術後14天內避免辛辣、刺激性食物，可能影響傷口癒合。', tab: 'diet' },
-    { category: '飲食注意', title: '禁不明中藥', text: '術後14天內禁用不明中藥材，可能影響凝血功能。', tab: 'diet' },
-    { category: '飲食注意', title: '禁阿斯匹靈', text: '術後14天內禁止服用阿斯匹靈（除非醫師指示），會影響血小板凝血。', tab: 'diet' },
-    { category: '飲食注意', title: '禁抽菸', text: '術後14天內嚴格禁止抽菸，尼古丁會收縮血管，影響毛囊生長。', tab: 'diet' },
-    { category: '飲食注意', title: '禁飲酒', text: '術後14天內禁止飲酒，酒精會影響傷口癒合及藥物效果。', tab: 'diet' },
-  ];
+// ── SEARCH ────────────────────────────────────────────────────
+const searchData = [
+  { cat:'術前準備', title:'充足睡眠', text:'手術前1日請勿熬夜，保持充足睡眠。', tab:'preop' },
+  { cat:'術前準備', title:'交通安排', text:'手術當日建議由他人接送，避免自行駕車。', tab:'preop' },
+  { cat:'術前準備', title:'術日洗頭', text:'手術當日早上請洗頭，洗後頭皮不可擦任何東西，含生髮水或護髮產品。', tab:'preop' },
+  { cat:'術前準備', title:'用藥告知', text:'必須告知所有服用的藥品，可能影響凝血功能。', tab:'preop' },
+  { cat:'術前準備', title:'過敏史', text:'必須主動告知麻醉藥劑、藥品或食物過敏史。', tab:'preop' },
+  { cat:'術前準備', title:'術前禁酒', text:'術前48小時內禁止飲酒。', tab:'preop' },
+  { cat:'術前準備', title:'避免咖啡因', text:'手術當日避免含咖啡因飲品，如咖啡、茶、能量飲料。', tab:'preop' },
+  { cat:'術前準備', title:'進食建議', text:'早餐需適量進食，勿空腹前往手術。', tab:'preop' },
+  { cat:'術前準備', title:'穿著建議', text:'應穿著寬鬆排釦衣物，禁穿套頭式衣服，避免拉扯種植部位。', tab:'preop' },
+  { cat:'傷口照護', title:'傷口滲血', text:'術後少量滲血滲液為正常情況，使用紗布直接加壓三分鐘。', tab:'wound' },
+  { cat:'傷口照護', title:'腫脹消退', text:'腫脹通常在1-2天內消退，不影響毛囊生長。', tab:'wound' },
+  { cat:'傷口照護', title:'冰敷方法', text:'前額與太陽穴冰敷，每次20分鐘，休息20分鐘交替進行。', tab:'wound' },
+  { cat:'傷口照護', title:'外出戴帽', text:'術後7天內外出戴通風帽，避免傷口感染。', tab:'wound' },
+  { cat:'傷口照護', title:'假髮使用', text:'假髮需經醫師術後評估才可使用。', tab:'wound' },
+  { cat:'傷口照護', title:'回診追蹤', text:'術後一個月內第一次回診，一年內依醫師指示定期回診。', tab:'wound' },
+  { cat:'洗頭步驟', title:'洗頭時機', text:'術後36小時內禁止洗頭，36小時後才可開始洗髮。', tab:'wash' },
+  { cat:'洗頭步驟', title:'水柱調整', text:'水柱調至最弱，水量調至最小，禁止使用強力水流。', tab:'wash' },
+  { cat:'洗頭步驟', title:'清洗方式', text:'洗髮精先於掌心抹泡後，以輕碰頭皮的方式清潔，不可用指甲抓揉頭皮。', tab:'wash' },
+  { cat:'洗頭步驟', title:'吹乾方式', text:'毛巾輕輕吸乾水分，吹風機距離勿過近，使用微弱冷風。', tab:'wash' },
+  { cat:'洗頭步驟', title:'洗髮精選用', text:'術後7天內禁用一般洗髮精，結痂後方可使用常規洗髮精，1個月後經醫師評估可恢復正常力道。', tab:'wash' },
+  { cat:'睡眠姿勢', title:'平躺入眠', text:'術後三天內，睡覺時頭部保持平躺，以平躺姿勢入眠。', tab:'sleep' },
+  { cat:'睡眠姿勢', title:'水腫睡姿', text:'若有臉部水腫，採下巴上仰姿勢睡眠，抬高頭部促進消腫。', tab:'sleep' },
+  { cat:'睡眠姿勢', title:'枕頭保護', text:'若有滲液，可在枕頭上覆蓋深色毛巾避免污染。', tab:'sleep' },
+  { cat:'飲食注意', title:'按時服藥', text:'請依醫師指示用藥，按時服用藥物，不可自行停藥。', tab:'diet' },
+  { cat:'飲食注意', title:'禁辛辣食物', text:'術後14天內避免辛辣、刺激性食物，影響傷口癒合。', tab:'diet' },
+  { cat:'飲食注意', title:'禁不明中藥', text:'術後14天內禁用不明中藥材，可能影響凝血功能。', tab:'diet' },
+  { cat:'飲食注意', title:'禁阿斯匹靈', text:'術後14天禁止服用阿斯匹靈，除非醫師指示，會影響血小板凝血。', tab:'diet' },
+  { cat:'飲食注意', title:'禁抽菸', text:'術後14天嚴格禁止抽菸，尼古丁收縮血管影響毛囊生長。', tab:'diet' },
+  { cat:'飲食注意', title:'禁飲酒', text:'術後14天禁止飲酒，酒精影響傷口癒合及藥物效果。', tab:'diet' },
+];
 
-  const searchInput = document.getElementById('searchInput');
-  const searchResults = document.getElementById('searchResults');
-  const searchList = document.getElementById('searchList');
+const tabMap = { home:0, preop:1, wound:2, wash:3, sleep:4, diet:5, checklist:6 };
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+const searchList = document.getElementById('searchList');
 
-  searchInput.addEventListener('input', function() {
-    const q = this.value.trim();
-    if (!q) {
-      clearSearch();
-      return;
-    }
-    const filtered = searchData.filter(item =>
-      item.title.includes(q) || item.text.includes(q) || item.category.includes(q)
-    );
+searchInput.addEventListener('input', function() {
+  const q = this.value.trim();
+  if (!q) { clearSearch(); return; }
+  const filtered = searchData.filter(d =>
+    d.cat.includes(q) || d.title.includes(q) || d.text.includes(q)
+  );
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  searchResults.classList.add('active');
+  if (filtered.length === 0) {
+    searchList.innerHTML = `<div class="empty-search"><div class="es-icon">✦</div><p>找不到「${q}」相關內容</p><p style="margin-top:0.4rem;font-size:0.78rem;">試試搜尋：洗頭、腫脹、飲食、睡姿、冰敷</p></div>`;
+  } else {
+    const hl = (str) => str.replace(new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'), `<mark>${q}</mark>`);
+    searchList.innerHTML = filtered.map(d => `
+      <div class="sr-item" onclick="goToTab('${d.tab}')">
+        <div class="sr-cat">${d.cat}</div>
+        <div class="sr-title">${hl(d.title)}</div>
+        <div class="sr-text">${hl(d.text)}</div>
+      </div>`).join('');
+  }
+});
 
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    searchResults.classList.add('active');
+function clearSearch() {
+  searchInput.value = '';
+  searchResults.classList.remove('active');
+  if (!document.querySelector('.panel.active'))
+    document.getElementById('panel-home').classList.add('active');
+}
 
-    if (filtered.length === 0) {
-      searchList.innerHTML = `
-        <div class="empty-search">
-          <div class="es-icon">🔍</div>
-          <p>找不到「${q}」相關內容</p>
-          <p style="margin-top:0.4rem;font-size:0.8rem;">試試搜尋：洗頭、腫脹、飲食、睡姿</p>
-        </div>`;
-    } else {
-      searchList.innerHTML = filtered.map(item => {
-        const hl = (str) => str.replace(new RegExp(q, 'g'), `<mark>${q}</mark>`);
-        return `
-        <div class="search-result-item" onclick="goToTab('${item.tab}')">
-          <div class="sr-category">${item.category}</div>
-          <div class="sr-title">${hl(item.title)}</div>
-          <div class="sr-text">${hl(item.text)}</div>
-        </div>`;
-      }).join('');
-    }
+function goToTab(name) {
+  clearSearch();
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  switchTab(name, tabBtns[tabMap[name] ?? 0]);
+}
+
+// ── CHECKLIST PERSISTENCE ────────────────────────────────────
+function saveChecklist() {
+  const data = {};
+  document.querySelectorAll('#panel-checklist input[type=checkbox], .tl-detail input[type=checkbox]').forEach(cb => {
+    data[cb.id] = cb.checked;
   });
-
-  function clearSearch() {
-    searchInput.value = '';
-    searchResults.classList.remove('active');
-    const activePanel = document.querySelector('.panel.active');
-    if (!activePanel) {
-      document.getElementById('panel-home').classList.add('active');
-      document.querySelector('.tab-btn').classList.add('active');
-    }
-  }
-
-  function goToTab(name) {
-    clearSearch();
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabMap = { home: 0, preop: 1, wound: 2, wash: 3, sleep: 4, diet: 5, checklist: 6 };
-    switchTab(name, tabBtns[tabMap[name] || 0]);
-  }
-
-  // ─── CHECKLIST PERSISTENCE ────────────────────────────────────
-  function saveChecklist() {
-    const checks = {};
-    document.querySelectorAll('#panel-checklist input[type=checkbox]').forEach(cb => {
-      checks[cb.id] = cb.checked;
-    });
-    localStorage.setItem('artas_checklist', JSON.stringify(checks));
-  }
-
-  function loadChecklist() {
-    const saved = localStorage.getItem('artas_checklist');
-    if (!saved) return;
-    const checks = JSON.parse(saved);
-    Object.entries(checks).forEach(([id, checked]) => {
-      const el = document.getElementById(id);
-      if (el) el.checked = checked;
-    });
-  }
-
-  function resetChecklist() {
-    if (!confirm('確定要重置所有勾選嗎？')) return;
-    document.querySelectorAll('#panel-checklist input[type=checkbox]').forEach(cb => cb.checked = false);
-    localStorage.removeItem('artas_checklist');
-  }
-
-  // Save on change
-  document.addEventListener('change', function(e) {
-    if (e.target.type === 'checkbox') saveChecklist();
+  localStorage.setItem('artas_v2', JSON.stringify(data));
+}
+function loadChecklist() {
+  const saved = localStorage.getItem('artas_v2');
+  if (!saved) return;
+  const data = JSON.parse(saved);
+  Object.entries(data).forEach(([id, v]) => {
+    const el = document.getElementById(id);
+    if (el) el.checked = v;
   });
-
-  loadChecklist();
+}
+function resetChecklist() {
+  if (!confirm('確定要重置所有勾選嗎？')) return;
+  document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+  localStorage.removeItem('artas_v2');
+}
+document.addEventListener('change', e => { if (e.target.type === 'checkbox') saveChecklist(); });
+loadChecklist();
 </script>
 </body>
 </html>
